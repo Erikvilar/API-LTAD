@@ -20,5 +20,8 @@ public interface Prod_itemRepository extends CrudRepository<Prod_item, Long> {
 
     @SuppressWarnings("unchecked")
     Prod_item save(Prod_item prod_item);
+    
+   void  deleteById(Long id);
+
 
 }

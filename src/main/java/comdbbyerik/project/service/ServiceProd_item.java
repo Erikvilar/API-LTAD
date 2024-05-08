@@ -28,5 +28,11 @@ public class ServiceProd_item {
     public Prod_item getByid(Long id) {
         return eRepo.findAllById(id);
     }
+   
+    public Prod_item  deleteItem(Long id){
+     eRepo.deleteById(id);
+    
+    return null;
+    }
 
 }

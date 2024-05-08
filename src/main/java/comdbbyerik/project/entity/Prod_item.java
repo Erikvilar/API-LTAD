@@ -15,7 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -45,7 +45,7 @@ public class Prod_item {
     
     @Column(unique = true) @NonNull
     private Long code_item;
-
+    @NotEmpty(message = "Could be empty")
     private Boolean exists_item;
 
     // private Double price_item = 0D;

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,7 +39,7 @@ public class ControllerProd_item {
 
     @GetMapping("/version")
     public String getVersion() {
-        return appNAme + " -" + appversion;
+        return "API name: "+appNAme +"\nAPI Version: " + appversion +"\nDeveloper: Erik Alves VIlar";
     }
 
     // Excessive getter finder all
@@ -73,4 +74,16 @@ public class ControllerProd_item {
         prod_item.setId(id);
         return new ResponseEntity<Prod_item>(eService.saveAllItems(prod_item), HttpStatus.ACCEPTED);
     }
+
+    @DeleteMapping("delete-value/{id}")
+    public ResponseEntity<?> deleteItem(@PathVariable Long id){
+        Optional<Prod_item> prod_itemObj = eRepository.findById(id);
+        if (prod_itemObj.isPresent()) {
+            Prod_item p = this.eService.deleteItem(id);
+            return new ResponseEntity<>(p, HttpStatus.OK);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Objeto de Nº " + id + " não encotrado!");
+
+    }
 }
+
