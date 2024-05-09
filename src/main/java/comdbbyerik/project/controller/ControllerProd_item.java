@@ -98,4 +98,8 @@ public class ControllerProd_item {
     public ResponseEntity <List<Prod_item>> getByType(@PathVariable String  type) {
         return new ResponseEntity <List<Prod_item>>(eService.getByType(type), HttpStatus.OK);
     }
+    @GetMapping("/return-exists/{exists}")
+    public ResponseEntity <List<Prod_item>> getByExists(@PathVariable Boolean  exists) {
+        return new ResponseEntity <List<Prod_item>>(eService.getByExists(exists), HttpStatus.OK);
+    }
 }

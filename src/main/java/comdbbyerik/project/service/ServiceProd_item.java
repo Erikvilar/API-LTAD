@@ -41,6 +41,9 @@ public class ServiceProd_item {
     public List<Prod_item> getByType(String type){
         return eRepo.findByType_item(type);
     }
+    public List<Prod_item> getByExists(Boolean exists){
+        return eRepo.findByExists_item(exists);
+    }
 
 
 }

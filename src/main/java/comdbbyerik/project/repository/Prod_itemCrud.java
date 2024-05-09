@@ -28,5 +28,7 @@ public interface Prod_itemCrud extends CrudRepository<Prod_item, Long> {
     Prod_item findByCode_item(Long code);
     @Query("FROM Prod_item where type_item  = :type")
     List<Prod_item>findByType_item(String type);
+    @Query("FROM Prod_item where exists_item  = :exists")
+    List<Prod_item>findByExists_item(Boolean  exists);
 
 }
