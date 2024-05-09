@@ -3,6 +3,7 @@ package comdbbyerik.project.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import comdbbyerik.project.service.ServiceProd_item;
+
 import jakarta.validation.Valid;
 
 import java.util.List;
@@ -23,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 import comdbbyerik.project.entity.Prod_item;
-import comdbbyerik.project.repository.Prod_itemRepository;
+import comdbbyerik.project.repository.Prod_itemCrud;
+
+
 
 @RestController
 public class ControllerProd_item {
@@ -31,11 +34,13 @@ public class ControllerProd_item {
     @Autowired
     private ServiceProd_item eService;
     @Autowired
-    private Prod_itemRepository eRepository;
+    private Prod_itemCrud eRepository;
     @Value("${app.name}")
     public String appNAme;
     @Value("${app.version}")
     public String appversion;
+
+   
 
     @GetMapping("/version")
     public String getVersion() {
@@ -43,12 +48,12 @@ public class ControllerProd_item {
     }
 
     // Excessive getter finder all
-    @GetMapping("/return-total")
+    @GetMapping("/return")
     public ResponseEntity<List<Prod_item>> getTotal() {
         return new ResponseEntity<List<Prod_item>>(eService.getAllItems(), HttpStatus.OK);
     }
 
-    @GetMapping("/return-unique/{id}")
+    @GetMapping("/retur/{id}")
     public ResponseEntity<?> getUnique(@PathVariable long id) {
         Optional<Prod_item> prod_itemObj = eRepository.findById(id);
         if (prod_itemObj.isPresent()) {
@@ -74,7 +79,6 @@ public class ControllerProd_item {
         prod_item.setId(id);
         return new ResponseEntity<Prod_item>(eService.saveAllItems(prod_item), HttpStatus.ACCEPTED);
     }
-
     @DeleteMapping("delete-value/{id}")
     public ResponseEntity<?> deleteItem(@PathVariable Long id){
         Optional<Prod_item> prod_itemObj = eRepository.findById(id);
@@ -85,5 +89,13 @@ public class ControllerProd_item {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Objeto de Nº " + id + " não encotrado!");
 
     }
-}
+    @GetMapping("/return-code/{code}")
+    public ResponseEntity <Prod_item> getMethodName(@PathVariable  Long  code) {
+        return new ResponseEntity <Prod_item>(eService.getByName(code), HttpStatus.OK);
+    }
 
+    @GetMapping("/return-type/{type}")
+    public ResponseEntity <List<Prod_item>> getByType(@PathVariable String  type) {
+        return new ResponseEntity <List<Prod_item>>(eService.getByType(type), HttpStatus.OK);
+    }
+}
