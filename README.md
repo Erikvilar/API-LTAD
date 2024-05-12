@@ -1,22 +1,28 @@
-# Service Produtos LTAD
+# Service Products LTAD
 
-Este projeto consiste em ser um web serviço que forneça todas as funções de um CRUD com permissões de consultas em SQL.
+Finalidade da ferramenta e ser um CRUD (Criar, Ler, Atualizar e deletar) dados inseridos usando método (JPA) persistência de dados que usa Hibernate de arquitetura REST API,possibilitando manipulação de dados nas tabelas bem como consultas e armazenamento.
 
-## Instalação
+
+# Desenvolvida em:
+## Front end   
+    -Javascript   
+    -HTML
+    -CSS
+    -JSON
+## Back end   
+    -Java  SE - 17
+    -Spring boot 3.2.0
+    - Mysql 
+    -JSON
+    -XML
+    -Thunder client (Request tester)
+
+
 
 
 ## Uso
 
-1. Execute o comando para iniciar o aplicativo: `npm start`
-2. Abra o navegador e vá para `http://localhost:3000`
-
 ## Contribuição
-
-1. Fork este repositório
-2. Crie uma nova branch: `git checkout -b nova-feature`
-3. Faça suas alterações e faça commit delas: `git commit -am 'Adicionar nova feature'`
-4. Envie para a sua branch: `git push origin nova-feature`
-5. Envie um pull request
 
 ## Licença
 

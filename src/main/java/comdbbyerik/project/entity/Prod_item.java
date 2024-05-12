@@ -8,17 +8,16 @@ import java.sql.Date;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+
 
 
 
@@ -43,10 +42,10 @@ public class Prod_item {
     private String description_item;
     //notation for declare to unique value in db
     
-    @Column(unique = true) @NonNull
+    @Column(unique = true)
     private Long code_item;
-    @NotEmpty(message = "Could be empty")
-    private Boolean exists_item;
+
+    private String exists_item;
 
     // private Double price_item = 0D;
 
@@ -56,24 +55,5 @@ public class Prod_item {
     @UpdateTimestamp
     @Column(name="update_item")
     private Date update_item;
-
-/* 
- * {
- * "name_item":"teste",
- * "code_item":1234567,
- * "image_item":"source/path",
- * "type_item":"teste",
- * "exists_item":false,
- * "price_item":00.00,
- * "condition_item":"bad teste",
- * "description_item":"teste teste teste teste"
- * }
- * 
- * 
- * 
- * 
-*/
-
-
 
 }
