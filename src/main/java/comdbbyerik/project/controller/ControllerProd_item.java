@@ -22,8 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import comdbbyerik.project.entity.Prod_item;
 import comdbbyerik.project.repository.Prod_itemCrud;
@@ -48,27 +47,12 @@ public class ControllerProd_item {
     }
 
     @GetMapping("/return")
-    public ResponseEntity<?> MultiRoutes(@RequestParam(required = false) Long id,
-            @RequestParam(required = false) Long code,
-            @RequestParam(required = false) String type) {
-        if (id != null) {
-            Optional<Prod_item> prod_itemObj = eRepository.findById(id);
-            if (prod_itemObj.isPresent()) {
-                return new ResponseEntity<Prod_item>(eService.getByid(id), HttpStatus.OK);
-            }
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Objeto de Nº " + id + " não encotrado");
-        } else if (code != null) {
-            return new ResponseEntity<Prod_item>(eService.getByName(code), HttpStatus.OK);
-        } else if (type != null) {
-            return new ResponseEntity<List<Prod_item>>(eService.getByType(type), HttpStatus.OK);
-        } else {
+    public ResponseEntity <List<Prod_item>> UniqueRoute(){
             return new ResponseEntity<List<Prod_item>>(eService.getAllItems(), HttpStatus.OK);
-        }
     }
 
-    @GetMapping("/return-id/{id}")
-    public ResponseEntity<?> getUnique(@PathVariable long id) {
-
+    @GetMapping("/return-identificador/{id}")
+    public ResponseEntity<?> getId(@PathVariable long id) {
         Optional<Prod_item> prod_itemObj = eRepository.findById(id);
         if (prod_itemObj.isPresent()) {
             return new ResponseEntity<Prod_item>(eService.getByid(id), HttpStatus.OK);
@@ -77,20 +61,28 @@ public class ControllerProd_item {
 
     }
 
-    @GetMapping("/return-code/{code}")
-    public ResponseEntity<Prod_item> getMethodName(@PathVariable Long code) {
-        return new ResponseEntity<Prod_item>(eService.getByName(code), HttpStatus.OK);
+    @GetMapping("/return-nome/{name}")
+    public ResponseEntity <List<Prod_item>> getName(@PathVariable String name) {
+        return new ResponseEntity <List<Prod_item>>(eService.getByName(name), HttpStatus.OK);
+    }
+    @GetMapping("/return-codigo/{code}")
+    public ResponseEntity<Prod_item> getCode(@PathVariable Long code) {
+        return new ResponseEntity<Prod_item>(eService.getByCode(code), HttpStatus.OK);
     }
 
-    @GetMapping("/return/{type}")
+    @GetMapping("/return-tipo/{type}")
     public ResponseEntity<List<Prod_item>> getByType(@PathVariable String type) {
         return new ResponseEntity<List<Prod_item>>(eService.getByType(type), HttpStatus.OK);
     }
 
-    @GetMapping("/return/{exists}")
+    @GetMapping("/return-existencia/{exists}")
     public ResponseEntity<List<Prod_item>> getByExists(@PathVariable String exists) {
 
         return new ResponseEntity<List<Prod_item>>(eService.getByExists(exists), HttpStatus.OK);
+    }
+    @GetMapping("/return-condicao/{condition}")
+    public ResponseEntity<List<Prod_item>> getByCondition(@PathVariable String condition) {
+        return new ResponseEntity<List<Prod_item>>(eService.getByCondition(condition), HttpStatus.OK);
     }
 
     @PostMapping("/insert-values")

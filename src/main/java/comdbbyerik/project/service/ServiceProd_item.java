@@ -36,16 +36,27 @@ public class ServiceProd_item {
         return eRepo.findAllById(id);
     }
 
-    public Prod_item getByName(Long code){
+    public Prod_item getByCode(Long code){
         return eRepo.findByCode_item(code);
+    }
+    public List<Prod_item> getByName(String name){
+        return eRepo.findByName_item(name);
     }
    
     public List<Prod_item> getByType(String type){
-        return eRepo.findByType_item(type);
+        try{
+            return eRepo.findByType_item(type);
+        }catch(Exception e){
+            throw new InternalError("Data not found");
+        }
+       
     }
  
     public List<Prod_item> getByExists(String  exists){
         return eRepo.findByExists_item(exists);
+    }
+    public List<Prod_item> getByCondition(String  condition){
+        return eRepo.findByCondition_item(condition);
     }
    
     public Integer deleteByCode(Long code){
