@@ -1,4 +1,4 @@
-package comdbbyerik.project.repository;
+package comdbbyerik.project.repositories.ProdRepositories;
 
 import java.util.List;
 
@@ -8,10 +8,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import comdbbyerik.project.entity.Prod_item;
+import comdbbyerik.project.entity.products.Prod_item;
 
 @Repository
-public interface Prod_itemCrud extends CrudRepository<Prod_item, Long> {
+public interface ProdRepostiory extends CrudRepository<Prod_item, Long> {
 
 
     @SuppressWarnings({ "unchecked", "null" })

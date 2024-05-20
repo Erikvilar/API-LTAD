@@ -1,4 +1,4 @@
-package comdbbyerik.project.entity;
+package comdbbyerik.project.entity.products;
 
 
 
@@ -55,5 +55,7 @@ public class Prod_item {
     @UpdateTimestamp
     @Column(name="update_item")
     private Date update_item;
+   
 
 }
+

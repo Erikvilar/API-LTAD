@@ -1,8 +1,6 @@
-package comdbbyerik.project.controller;
+package comdbbyerik.project.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
-
-import comdbbyerik.project.service.ServiceProd_item;
 
 import jakarta.validation.Valid;
 
@@ -15,6 +13,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,31 +21,42 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import comdbbyerik.project.entity.products.Prod_item;
+import comdbbyerik.project.repositories.ProdRepositories.ProdRepostiory;
+import comdbbyerik.project.service.ServiceProducts.ServiceProd_item;
 
-import comdbbyerik.project.entity.Prod_item;
-import comdbbyerik.project.repository.Prod_itemCrud;
 
 @RestController
+@RequestMapping("/product")
 @CrossOrigin(origins = "*")
 public class ControllerProd_item {
 
     @Autowired
     private ServiceProd_item eService;
     @Autowired
-    private Prod_itemCrud eRepository;
+    private ProdRepostiory eRepository;
 
     @Value("${app.name}")
     public String appNAme;
     @Value("${app.version}")
     public String appversion;
 
+ 
+
+
+
     @GetMapping("/version")
     public String getVersion() {
         return "API name: " + appNAme + "\nAPI Version: " + appversion + "\nDeveloper: Erik Alves VIlar";
     }
+    @GetMapping("/success-token")
+    public String success(){
+        return "Token validado - CHEGAMOS ATE AQUI!";
+    }
 
-    @GetMapping("/return")
+    @GetMapping("/return-items")
     public ResponseEntity <List<Prod_item>> UniqueRoute(){
             return new ResponseEntity<List<Prod_item>>(eService.getAllItems(), HttpStatus.OK);
     }

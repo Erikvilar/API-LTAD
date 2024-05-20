@@ -1,4 +1,4 @@
-package comdbbyerik.project.service;
+package comdbbyerik.project.service.ServiceProducts;
 
 import java.util.List;
 
@@ -7,16 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-
-import comdbbyerik.project.entity.Prod_item;
-import comdbbyerik.project.repository.Prod_itemCrud;
+import comdbbyerik.project.entity.products.Prod_item;
+import comdbbyerik.project.repositories.ProdRepositories.ProdRepostiory;
 
 
 @Service
 public class ServiceProd_item {
 
     @Autowired
-    private Prod_itemCrud eRepo;
+    private ProdRepostiory eRepo;
     
     public List<Prod_item> getAllItems() {
         return eRepo.findAll();
